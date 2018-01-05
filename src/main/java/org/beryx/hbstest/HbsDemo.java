@@ -15,8 +15,19 @@
  */
 package org.beryx.hbstest;
 
-public class HbsTestMain {
-	public static void main(String[] args) {
-		System.out.println("Hello from HbsTestMain!");
-	}
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
+import org.beryx.hbs.Helpers;
+
+import java.awt.*;
+
+public class HbsDemo {
+	public static void main(String[] args) throws Exception {
+        Handlebars handlebars = new Handlebars().with(new ClassPathTemplateLoader());
+        Helpers.register(handlebars);
+		Template tmpl = handlebars.compile("area");
+        String result = tmpl.apply(new Dimension(3, 5));
+        System.out.println(result);
+    }
 }
